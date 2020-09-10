@@ -23,6 +23,10 @@ def upshell(url):
 
 			if 'ZakirDotID' in r.text:
 				print colored("[Info] ", "cyan") + colored("Success Upload > " + cekShell, "green")
+				build = "Shell > " + cekShell
+				remover = str(build).replace('\r', '')
+				save = open('Result.txt', 'a').write(remover+'\n').close()
+
 			else:
 				print colored("[Info] ", "cyan") + colored("Failed Upload", "red")			
 
