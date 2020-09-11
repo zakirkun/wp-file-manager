@@ -2,6 +2,8 @@
 import requests
 import sys
 from termcolor import colored
+import time
+from multiprocessing.dummy import Pool
 
 def upshell(url):
 	print colored("Site : ","white") + colored(url, "blue")
@@ -49,14 +51,12 @@ print('''
 \n''')
 
 try:
-	lists = raw_input("websitelist ? ")
-	readsplit = open(lists).read().splitlines()  
-except:
-    print("Wrong input or list not found!")
-    exit()  
-try:
-	for url in readsplit:
-		upshell(url)
-except KeyboardInterrupt:
-    print("CTRL+C Detect, Exit!")
-    exit()    
+    lists = raw_input('Input Lists? ' )
+    thread = raw_input('Input Thread : ' )
+    print colored("Starting . . . . .", "white")
+    time.sleep(3)
+    liss = [ i.strip() for i in open(lists, 'r').readlines() ]
+    process = Pool(int(thread))
+    process.map(upshell, liss)
+except Exception as e:
+    print('????')   
